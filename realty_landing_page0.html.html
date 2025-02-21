@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Real Estate Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --texas-blue: #002868;
+            --texas-red: #BF0A30;
+            --white: #FFFFFF;
+            --overlay: rgba(0, 40, 104, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 40, 104, 0.6), rgba(0, 40, 104, 0.6)),
+                        url('https://source.unsplash.com/random/1920x1080/?texas,landscape');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .menu-trigger {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            color: var(--white);
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            background: transparent;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: breathe 3s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.1); }
+        }
+
+        .menu-trigger:hover {
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-50%); }
+            50% { transform: translateY(-50%) scale(1.2); }
+        }
+
+        .drawer-menu {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: var(--texas-blue);
+            transition: 0.3s ease-in-out;
+            padding: 80px 20px;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .drawer-menu.open {
+            left: 0;
+        }
+
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .menu-item {
+            width: 100%;
+            padding: 20px;
+            background: var(--texas-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateX(10px);
+            background: #d41137;
+        }
+
+        .search-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button {
+            background: var(--texas-red);
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background: #d41137;
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .drawer-menu {
+                width: 100%;
+                left: -100%;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                font-size: 1.1em;
+                padding: 15px 20px;
+            }
+
+            .search-bar {
+                padding: 15px;
+                font-size: 1.1em;
+            }
+
+            .menu-trigger {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-trigger"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="search-container">
+        <a href="tel:214-JD-SMITH" class="cta-button">
+            <i class="fas fa-phone"></i>
+            214-JD-SMITH
+        </a>
+        <input type="text" class="search-bar" placeholder="Search properties..." readonly>
+    </div>
+
+    <div class="drawer-menu">
+        <div class="menu-grid">
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+            <div class="menu-item">MENU ITEM</div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script>
+        document.querySelector('.menu-trigger').addEventListener('click', function() {
+            document.querySelector('.drawer-menu').classList.toggle('open');
+            document.querySelector('.overlay').classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-right');
+            icon.classList.toggle('fa-chevron-left');
+        });
+
+        document.querySelector('.overlay').addEventListener('click', function() {
+            document.querySelector('.drawer-menu').classList.remove('open');
+            document.querySelector('.overlay').classList.remove('active');
+            const icon = document.querySelector('.menu-trigger i');
+            icon.classList.add('fa-chevron-right');
+            icon.classList.remove('fa-chevron-left');
+        });
+    </script>
+</body>
+</html>
